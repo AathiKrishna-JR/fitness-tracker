@@ -1,0 +1,62 @@
+<section class="signup">
+    <form fxLayout="column" fxLayoutAlign="center center" #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <mat-form-field>
+            <mat-label>Your Email</mat-label>
+            <input 
+                matInput 
+                type="email" 
+                placeholder="Your Email" 
+                ngModel 
+                name="email" 
+                #emailInput="ngModel"
+                required
+            >
+            <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty</mat-error>
+            <mat-error *ngIf="emailInput.hasError('email')">Email is invalid</mat-error>
+        </mat-form-field>
+
+        <mat-form-field hintLabel="Should be at least 6 characters long">
+            <mat-label>Your Password </mat-label>
+            <input 
+                type="password" 
+                matInput 
+                placeholder="Your password" 
+                ngModel 
+                name="password" 
+                required 
+                minlength="6" 
+                #pwInput="ngModel"
+            >
+            <mat-hint align="end">{{ pwInput.value?.length || 0 }} / 6</mat-hint>
+            <mat-error *ngIf="pwInput.hasError('minlength')">Has to be at least 6 characters long</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" ngModel #dtInput="ngModel" name="date" required>
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        
+        <mat-checkbox 
+            ngModel 
+            name="agree"
+            required 
+            color="primary">
+            Agree to terms and conditions
+        </mat-checkbox>
+
+        <button *ngIf="!isLoading" type="submit" mat-raised-button color="primary" [disabled]="f.invalid">
+            Submit
+        </button>
+
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+
+        <div class="login-footer">
+            If you already have an account?
+            <a (click)="navigateToLogin()">Go to Login</a>
+        </div>
+    </form>
+</section>

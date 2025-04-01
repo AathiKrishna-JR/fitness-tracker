@@ -1,0 +1,28 @@
+<div class="login-form">
+    <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field >
+        <mat-label>Your email</mat-label>
+        <input matInput formControlName="email" type="email" autocomplete="email"  required>
+        <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+          Please enter a valid email.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field >
+        <mat-label>Your password</mat-label>
+        <input matInput formControlName="password" type="password" autocomplete="current-password" required>
+        <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          Please enter your password.
+        </mat-error>
+      </mat-form-field>
+
+      <button  mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+        Submit
+      </button>
+      <mat-spinner  *ngIf="isLoading$ | async"></mat-spinner>
+      <div class="login-footer">
+        If you don't have an account?
+        <a (click)="navigateToSignup()">Sign up here</a>
+      </div>
+    </form>
+</div>
