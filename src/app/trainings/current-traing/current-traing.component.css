@@ -1,0 +1,4 @@
+.current-training{
+    display: flex;
+    flex-direction: column;
+}

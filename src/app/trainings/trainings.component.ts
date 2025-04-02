@@ -37,7 +37,7 @@ export class TrainingsComponent {
           this.ongoingTraining=true;
           console.log(exercise, this.ongoingTraining);
         }else{
-          this.ongoingTraining=true;
+          this.ongoingTraining=false;
           console.log(exercise, this.ongoingTraining);
         }
       });

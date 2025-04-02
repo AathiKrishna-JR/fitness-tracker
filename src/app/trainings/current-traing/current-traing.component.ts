@@ -28,7 +28,7 @@ export class CurrentTrainingComponent implements OnInit {
       console.error('No exercise found or invalid duration.');
       return;
     }
-    console.log("aaa",runningExercise);
+   
     const step = (runningExercise.duration / 100) * 1000;
     this.timer = setInterval(() => {
       this.progress += 1;
